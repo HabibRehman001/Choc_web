@@ -1,0 +1,46 @@
+
+  /* Best selling (Sell) block */
+.bs-section {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.bs-title-wrap {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.bs-title-wrap h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  color: #3a2a22;
+}
+
+/* Full viewport width, centered flex for the image */
+.bs-img-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: min(50vw, 420px);
+}
+
+.bs-img {
+  width: 80%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .bs-img-container {
+    min-height: unset;
+  }
+}

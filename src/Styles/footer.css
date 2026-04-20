@@ -1,0 +1,241 @@
+/* ── Footer wrapper ── */
+.ft-footer {
+    width: 100vw;
+    background: #fdf3ee;
+    box-sizing: border-box;
+    font-family: "Georgia", serif;
+  }
+  
+  /* ════════════════════════════════
+     MAIN CONTENT AREA
+  ════════════════════════════════ */
+  .ft-main {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.1fr 1.4fr;
+    gap: 32px 48px;
+    padding: 48px 80px 44px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  /* ── Column heading ── */
+  .ft-col-heading {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #3a2a22;
+    margin: 0 0 16px;
+    letter-spacing: 0.01em;
+  }
+  
+  .ft-social-heading {
+    margin-top: 24px;
+  }
+  
+  /* ════════════════════════════════
+     CONTACT LIST
+  ════════════════════════════════ */
+  .ft-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  
+  .ft-contact-list li {
+    font-size: 0.82rem;
+    color: #5a4a42;
+    line-height: 1.5;
+  }
+  
+  .ft-label {
+    font-weight: 700;
+    color: #3a2a22;
+  }
+  
+  .ft-contact-list a {
+    color: #5a4a42;
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+  .ft-contact-list a:hover {
+    color: #c07a6a;
+  }
+  
+  /* ════════════════════════════════
+     NAV LINK LISTS
+  ════════════════════════════════ */
+  .ft-link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .ft-link-list a {
+    font-size: 0.84rem;
+    color: #5a4a42;
+    text-decoration: none;
+    transition: color 0.18s;
+    display: inline-block;
+  }
+  .ft-link-list a:hover {
+    color: #c07a6a;
+  }
+  
+  /* ════════════════════════════════
+     EMAIL INPUT ROW
+  ════════════════════════════════ */
+  .ft-email-row {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #d8c8c0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  
+  .ft-email-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 11px 14px;
+    font-family: "Georgia", serif;
+    font-size: 0.8rem;
+    color: #3a2a22;
+    background: transparent;
+    min-width: 0;
+  }
+  .ft-email-input::placeholder {
+    color: #b0a098;
+  }
+  
+  .ft-submit-btn {
+    flex-shrink: 0;
+    background: #e8b4a0;
+    border: none;
+    padding: 11px 20px;
+    font-family: "Georgia", serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #3a2a22;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .ft-submit-btn:hover {
+    background: #c07a6a;
+    color: #fff;
+  }
+  
+  /* ════════════════════════════════
+     SOCIAL ICONS
+  ════════════════════════════════ */
+  .ft-social-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .ft-social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #3a2a22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.18s;
+    flex-shrink: 0;
+  }
+  
+  .ft-social-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .ft-social-btn:hover {
+    background: #c07a6a;
+    transform: scale(1.1);
+  }
+  
+  /* ════════════════════════════════
+     BOTTOM BAR
+  ════════════════════════════════ */
+  .ft-bottom {
+    background: #e8b4a0;
+    padding: 14px 24px;
+    text-align: center;
+  }
+  
+  .ft-bottom p {
+    font-size: 0.78rem;
+    color: #3a2a22;
+    margin: 0;
+  }
+  
+  .ft-brand {
+    color: #c07a6a;
+    font-weight: 700;
+  }
+  
+  .ft-dev-link {
+    color: #3a2a22;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.18s;
+  }
+  .ft-dev-link:hover {
+    color: #7a3a2a;
+  }
+  
+  /* ════════════════════════════════
+     RESPONSIVE — tablet  ≤ 900px
+  ════════════════════════════════ */
+  @media (max-width: 900px) {
+    .ft-main {
+      grid-template-columns: 1fr 1fr;
+      padding: 40px 40px 36px;
+      gap: 28px 36px;
+    }
+  }
+  
+  /* ════════════════════════════════
+     RESPONSIVE — mobile  ≤ 600px
+  ════════════════════════════════ */
+  @media (max-width: 600px) {
+    .ft-main {
+      grid-template-columns: 1fr;
+      padding: 32px 24px 28px;
+      gap: 28px;
+    }
+  
+    .ft-col-heading { font-size: 0.88rem; }
+  
+    .ft-email-row {
+      flex-direction: column;
+      border-radius: 8px;
+    }
+  
+    .ft-email-input {
+      border-bottom: 1px solid #e0d0c8;
+      padding: 12px 14px;
+    }
+  
+    .ft-submit-btn {
+      padding: 12px;
+      text-align: center;
+    }
+  
+    .ft-bottom p {
+      font-size: 0.72rem;
+      line-height: 1.6;
+    }
+  }

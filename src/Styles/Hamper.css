@@ -1,0 +1,24 @@
+.hamper-banner {
+  width: 100%;
+  height: 410px;
+  background-image: url("https://www.olmecchocolates.com/cdn/shop/files/5-desktop.webp?v=1760956338&width=2000");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ded3b9;
+}
+
+@media (max-width: 1024px) {
+  .hamper-banner {
+    height: 340px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hamper-banner {
+    background-image: url("https://www.olmecchocolates.com/cdn/shop/files/5-mobile.webp?v=1760956344&width=750");
+    height: clamp(210px, 78vw, 320px);
+    background-size: cover;
+    background-position: 34% center;
+  }
+}
