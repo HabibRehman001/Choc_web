@@ -1,20 +1,63 @@
 @import "tailwindcss";
-*{
-  overflow-x: hidden;
+
+:root {
+  --choc-dark: #2c1810;
+  --choc-cocoa: #3e2723;
+  --choc-cream: #f5e6ca;
+  --choc-gold: #d4af37;
+  --choc-gold-soft: #b8922b;
+  --choc-ink: #1a0f0b;
+  --choc-card: #4a312b;
+  --choc-card-soft: #5a3a33;
+  --choc-border: rgba(245, 230, 202, 0.2);
+  --choc-shadow: 0 14px 40px rgba(12, 6, 4, 0.45);
+  --radius-lg: 18px;
 }
-/* App shell: full-height root, avoid horizontal bleed from 100vw */
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.16) 0%, transparent 34%),
+    radial-gradient(circle at 85% 0%, rgba(245, 230, 202, 0.1) 0%, transparent 32%),
+    linear-gradient(140deg, #1f120d 0%, #2c1810 50%, #3e2723 100%);
+  color: var(--choc-cream);
+  font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
 #root {
   min-height: 100vh;
 }
 
-/* Animations referenced from LocationHeader (Tailwind arbitrary animation names) */
 @keyframes panelDrop {
   from {
     opacity: 0;
@@ -25,6 +68,7 @@ body {
     transform: translateY(0);
   }
 }
+
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);
@@ -33,6 +77,7 @@ body {
     transform: translateX(0);
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -41,6 +86,7 @@ body {
     opacity: 1;
   }
 }
+
 @keyframes slideUp {
   from {
     opacity: 0;

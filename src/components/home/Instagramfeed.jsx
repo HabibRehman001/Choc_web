@@ -1,92 +1,65 @@
-
+import { useEffect, useMemo, useState } from "react";
 import "../../Styles/Whychooseus.css";
+import { fetchImagesByTag, getCycledImageUrl } from "../../utils/imageApi";
+
 const POSTS = [
-  {
-    id: 1,
-    src: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&q=80",
-    href: "https://instagram.com/p/abc1",
-  },
-  {
-    id: 2,
-    src: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&q=80",
-    href: "https://instagram.com/p/abc2",
-  },
-  {
-    id: 3,
-    src: "https://images.unsplash.com/photo-1481391032119-d89fee407e44?w=400&q=80",
-    href: "https://instagram.com/p/abc3",
-  },
-  {
-    id: 4,
-    src: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&q=80",
-    href: "https://instagram.com/p/abc4",
-  },
-  {
-    id: 5,
-    src: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&q=80",
-    href: "https://instagram.com/p/abc5",
-  },
-  {
-    id: 6,
-    src: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=400&q=80",
-    href: "https://instagram.com/p/abc6",
-  },
-  {
-    id: 7,
-    src: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=400&q=80",
-    href: "https://instagram.com/p/abc7",
-  },
-  {
-    id: 8,
-    src: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&q=80",
-    href: "https://instagram.com/p/abc8",
-  },
-  {
-    id: 9,
-    src: "https://images.unsplash.com/photo-1610450949065-1f2841536c88?w=400&q=80",
-    href: "https://instagram.com/p/abc9",
-  },
-  {
-    id: 10,
-    src: "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?w=400&q=80",
-    href: "https://instagram.com/p/abc10",
-  },
-  {
-    id: 11,
-    src: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400&q=80",
-    href: "https://instagram.com/p/abc11",
-  },
-  {
-    id: 12,
-    src: "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=800",
-    href: "https://instagram.com/p/abc12",
-  },
+  { id: 1, tone: "linear-gradient(145deg, #2c1810 0%, #4a312b 100%)" },
+  { id: 2, tone: "linear-gradient(145deg, #3e2723 0%, #5a3a33 100%)" },
+  { id: 3, tone: "linear-gradient(145deg, #35211b 0%, #6b473e 100%)" },
+  { id: 4, tone: "linear-gradient(145deg, #2b160f 0%, #4f342d 100%)" },
+  { id: 5, tone: "linear-gradient(145deg, #2c1810 0%, #5a3a33 100%)" },
+  { id: 6, tone: "linear-gradient(145deg, #3e2723 0%, #6b473e 100%)" },
+  { id: 7, tone: "linear-gradient(145deg, #2b170f 0%, #5f3e35 100%)" },
+  { id: 8, tone: "linear-gradient(145deg, #35211b 0%, #6e4a40 100%)" },
+  { id: 9, tone: "linear-gradient(145deg, #2c1810 0%, #573831 100%)" },
+  { id: 10, tone: "linear-gradient(145deg, #3e2723 0%, #5f3e35 100%)" },
+  { id: 11, tone: "linear-gradient(145deg, #2b160f 0%, #4a312b 100%)" },
+  { id: 12, tone: "linear-gradient(145deg, #35211b 0%, #6b473e 100%)" },
 ];
 
-/* Instagram logo SVG */
 const InstaIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" className="ig-icon" aria-hidden="true">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" strokeWidth="2"/>
-    <circle cx="12" cy="12" r="5" stroke="white" strokeWidth="2"/>
-    <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" strokeWidth="2" />
+    <circle cx="12" cy="12" r="5" stroke="white" strokeWidth="2" />
+    <circle cx="17.5" cy="6.5" r="1.2" fill="white" />
   </svg>
 );
 
 export default function InstagramFeed() {
-  const handleImageError = (event) => {
-    const fallback =
-      "https://images.pexels.com/photos/4110094/pexels-photo-4110094.jpeg?auto=compress&cs=tinysrgb&w=800";
-    if (event.currentTarget.src !== fallback) {
-      event.currentTarget.src = fallback;
-    }
-  };
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const results = await fetchImagesByTag("instagram", 12);
+        setImages(results);
+      } catch (error) {
+        console.error("Failed to load instagram images", error);
+      }
+    };
+
+    load();
+  }, []);
+
+  const posts = useMemo(
+    () =>
+      POSTS.map((post, index) => {
+        const imageUrl = getCycledImageUrl(images, index);
+        return {
+          ...post,
+          imageUrl,
+          href: imageUrl || "#",
+        };
+      }),
+    [images]
+  );
 
   return (
     <section className="ig-section">
       <h2 className="ig-heading">Catch us on instagram</h2>
 
       <div className="ig-grid">
-        {POSTS.map(post => (
+        {posts.map((post) => (
           <a
             key={post.id}
             href={post.href}
@@ -95,13 +68,11 @@ export default function InstagramFeed() {
             className="ig-cell"
             aria-label="View on Instagram"
           >
-            <img
-              src={post.src}
-              alt=""
-              className="ig-img"
-              loading="lazy"
-              onError={handleImageError}
-            />
+            {post.imageUrl ? (
+              <img src={post.imageUrl} alt={`Instagram post ${post.id}`} className="ig-placeholder ig-placeholder--image" loading="lazy" />
+            ) : (
+              <div className="ig-placeholder" style={{ background: post.tone }} aria-hidden="true" />
+            )}
             <div className="ig-overlay">
               <InstaIcon />
             </div>

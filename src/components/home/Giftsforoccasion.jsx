@@ -1,33 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../Styles/Giftsforoccasion.css";
+import { fetchImagesByTag, getCycledImageUrl } from "../../utils/imageApi";
 
-/* Realistic product imagery (Unsplash) — matches occasion labels */
 const OCCASIONS = [
-  {
-    label: "Birthday",
-    src: "https://images.unsplash.com/photo-1558636508-e0db3814bd1d?auto=format&fit=crop&w=640&q=80",
-  },
-  {
-    label: "Just Love",
-    src: "https://images.unsplash.com/photo-1542848285-4778cbddb9ab?auto=format&fit=crop&w=640&q=80",
-  },
-  {
-    label: "Wedding",
-    src: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=640&q=80",
-  },
-  {
-    label: "New baby",
-    src: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=640&q=80",
-  },
+  { label: "Birthday", tone: "linear-gradient(150deg, #3e2723 0%, #5a3a33 100%)" },
+  { label: "Just Love", tone: "linear-gradient(150deg, #2c1810 0%, #4a312b 100%)" },
+  { label: "Wedding", tone: "linear-gradient(150deg, #4a312b 0%, #6b473e 100%)" },
+  { label: "New baby", tone: "linear-gradient(150deg, #35211b 0%, #5a3a33 100%)" },
 ];
 
 const SLIDE_COUNT = Math.ceil(OCCASIONS.length / 2);
 
+function OccasionBlob({ imageUrl, tone, label }) {
+  return (
+    <div className={`gfo-blob${imageUrl ? " gfo-blob--with-image" : ""}`} style={{ background: imageUrl ? undefined : tone }} aria-hidden="true">
+      {imageUrl ? <img src={imageUrl} alt={label} loading="lazy" /> : null}
+    </div>
+  );
+}
+
 export default function GiftsForOccasion() {
   const [slide, setSlide] = useState(0);
+  const [images, setImages] = useState([]);
 
-  const prev = () => setSlide(p => (p - 1 + SLIDE_COUNT) % SLIDE_COUNT);
-  const next = () => setSlide(p => (p + 1) % SLIDE_COUNT);
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const results = await fetchImagesByTag("occasions", 12);
+        setImages(results);
+      } catch (error) {
+        console.error("Failed to load occasion images", error);
+      }
+    };
+
+    load();
+  }, []);
+
+  const prev = () => setSlide((p) => (p - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+  const next = () => setSlide((p) => (p + 1) % SLIDE_COUNT);
 
   return (
     <section className="gfo-section">
@@ -40,37 +50,37 @@ export default function GiftsForOccasion() {
           </h2>
           <p className="gfo-body">
             Whether it&apos;s a birthday, a thank-you for a colleague, or just because;
-            you&apos;ll find the perfect treats for all of life&apos;s little, big, and
-            in-between moments.
+            you&apos;ll find the perfect treats for life&apos;s little, big, and in-between
+            moments.
           </p>
         </div>
 
         <div className="gfo-grid">
-          {OCCASIONS.map(occ => (
-            <button key={occ.label} type="button" className="gfo-card">
-              <div className="gfo-blob">
-                <img src={occ.src} alt={occ.label} loading="lazy" decoding="async" />
-              </div>
-              <p className="gfo-label">{occ.label}</p>
-            </button>
-          ))}
+          {OCCASIONS.map((occ, index) => {
+            const imageUrl = getCycledImageUrl(images, index);
+            return (
+              <button key={occ.label} type="button" className="gfo-card">
+                <OccasionBlob imageUrl={imageUrl} tone={occ.tone} label={occ.label} />
+                <p className="gfo-label">{occ.label}</p>
+              </button>
+            );
+          })}
         </div>
 
         <div className="gfo-slider">
-          <div
-            className="gfo-slider-track"
-            style={{ transform: `translateX(-${slide * 100}%)` }}
-          >
+          <div className="gfo-slider-track" style={{ transform: `translateX(-${slide * 100}%)` }}>
             {Array.from({ length: SLIDE_COUNT }).map((_, si) => (
               <div key={si} className="gfo-slide">
-                {OCCASIONS.slice(si * 2, si * 2 + 2).map(occ => (
-                  <button key={occ.label} type="button" className="gfo-card">
-                    <div className="gfo-blob">
-                      <img src={occ.src} alt={occ.label} loading="lazy" decoding="async" />
-                    </div>
-                    <p className="gfo-label">{occ.label}</p>
-                  </button>
-                ))}
+                {OCCASIONS.slice(si * 2, si * 2 + 2).map((occ, localIndex) => {
+                  const globalIndex = si * 2 + localIndex;
+                  const imageUrl = getCycledImageUrl(images, globalIndex);
+                  return (
+                    <button key={occ.label} type="button" className="gfo-card">
+                      <OccasionBlob imageUrl={imageUrl} tone={occ.tone} label={occ.label} />
+                      <p className="gfo-label">{occ.label}</p>
+                    </button>
+                  );
+                })}
               </div>
             ))}
           </div>

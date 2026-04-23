@@ -1,149 +1,128 @@
-/* ── Section shell: full-width background, content centered with side margins ── */
 .gfo-section {
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-  background: #fdf6f3;
-  padding: clamp(2.75rem, 6vw, 5rem) 0;
-  overflow-x: hidden;
+  background: linear-gradient(180deg, #2b170f 0%, #2c1810 100%);
+  padding: clamp(2.6rem, 5vw, 4.2rem) 0;
 }
 
 .gfo-inner {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+  padding: 0 clamp(1rem, 4vw, 3rem);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  box-sizing: border-box;
+  gap: clamp(2rem, 5vw, 4rem);
 }
 
-/* ── Left text ── */
 .gfo-text {
-  flex: 0 1 22rem;
-  max-width: 26rem;
+  flex: 0 1 24rem;
+  max-width: 27rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.35rem);
+  gap: 1rem;
 }
 
 .gfo-heading {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.65rem, 2.5vw, 2.15rem);
-  font-weight: 400;
-  font-style: italic;
-  color: #3a2a22;
-  line-height: 1.28;
   margin: 0;
+  color: var(--choc-cream);
+  font-size: clamp(1.9rem, 3vw, 2.65rem);
+  font-style: italic;
+  line-height: 1.12;
 }
 
 .gfo-accent {
-  color: #c07a6a;
-  font-style: italic;
+  color: var(--choc-gold);
 }
 
 .gfo-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 0.95rem);
-  color: #5c453d;
-  line-height: 1.75;
   margin: 0;
-  max-width: 22rem;
+  color: rgba(245, 230, 202, 0.82);
+  line-height: 1.75;
+  font-size: clamp(0.9rem, 1.3vw, 0.98rem);
 }
 
-/* ── Desktop grid ── */
 .gfo-grid {
   flex: 1;
-  min-width: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
-  justify-items: center;
-  align-items: start;
+  gap: clamp(1rem, 2.8vw, 2rem);
 }
 
 .gfo-slider {
   display: none;
 }
 
-/* ── Card: organic blob frame + label ── */
 .gfo-card {
+  background: transparent;
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.65rem;
-  width: 100%;
-  max-width: 240px;
-  margin: 0 auto;
-  padding: 0;
-  border: none;
-  background: none;
+  gap: 0.7rem;
   cursor: pointer;
-  font: inherit;
-  text-align: center;
   color: inherit;
+  padding: 0;
 }
 
 .gfo-card:focus-visible {
-  outline: 2px solid #c07a6a;
+  outline: 2px solid var(--choc-gold);
   outline-offset: 4px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
-/* Soft organic “blob” mask (not a perfect circle) */
 .gfo-blob {
-  width: min(220px, 28vw);
+  width: min(220px, 30vw);
   aspect-ratio: 1;
-  max-width: 100%;
-  border-radius: 58% 42% 48% 52% / 52% 48% 58% 42%;
+  border-radius: 62% 38% 48% 52% / 52% 44% 56% 48%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(245, 230, 202, 0.18) 0%, transparent 35%),
+    linear-gradient(145deg, #3e2723 0%, #5a3a33 100%);
+  box-shadow: var(--choc-shadow);
+  transition: transform 0.3s ease, border-radius 0.3s ease;
+  position: relative;
   overflow: hidden;
-  flex-shrink: 0;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-radius 0.35s ease;
-  box-shadow: 0 10px 36px rgba(58, 42, 34, 0.12);
 }
 
-.gfo-card:hover .gfo-blob,
-.gfo-card:focus-visible .gfo-blob {
-  transform: scale(1.04);
-  border-radius: 48% 52% 58% 42% / 45% 55% 48% 52%;
-  box-shadow: 0 14px 40px rgba(192, 122, 106, 0.28);
+.gfo-blob::before {
+  content: "Image will be added later";
+  position: absolute;
+  bottom: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 230, 202, 0.85);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.gfo-blob--with-image::before {
+  content: none;
 }
 
 .gfo-blob img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  display: block;
+}
+
+.gfo-card:hover .gfo-blob,
+.gfo-card:focus-visible .gfo-blob {
+  transform: translateY(-4px) scale(1.03);
+  border-radius: 48% 52% 56% 44% / 42% 54% 46% 58%;
 }
 
 .gfo-label {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
-  color: #3a2a22;
-  font-weight: 600;
-  letter-spacing: 0.02em;
   margin: 0;
+  color: var(--choc-cream);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  letter-spacing: 0.02em;
 }
 
-/* ═══════════════ MOBILE ≤ 768px ═══════════════ */
 @media (max-width: 768px) {
   .gfo-inner {
     flex-direction: column;
     align-items: stretch;
-    gap: 1.75rem;
-  }
-
-  .gfo-text {
-    flex: none;
-    max-width: 100%;
-  }
-
-  .gfo-body {
-    max-width: 100%;
+    gap: 1.6rem;
   }
 
   .gfo-grid {
@@ -154,58 +133,47 @@
     display: block;
     position: relative;
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     margin: 0 auto;
     overflow: hidden;
-    padding-bottom: 3rem;
+    padding-bottom: 2.9rem;
   }
 
   .gfo-slider-track {
     display: flex;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.45s ease;
   }
 
   .gfo-slide {
-    display: flex;
     min-width: 100%;
+    display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: clamp(0.75rem, 4vw, 1.25rem);
-    padding: 0 0.25rem;
+    gap: 0.9rem;
   }
 
   .gfo-blob {
-    width: min(150px, 42vw);
-  }
-
-  .gfo-card {
-    max-width: none;
+    width: min(160px, 42vw);
   }
 
   .gfo-arrow {
     position: absolute;
     top: 72px;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.92);
-    border: none;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    font-size: 1.45rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: rgba(17, 9, 6, 0.8);
+    color: var(--choc-cream);
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
     cursor: pointer;
-    color: #a05a4a;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-    line-height: 1;
-    padding-bottom: 2px;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
   }
 
   .gfo-arrow:hover {
-    background: #fff;
+    background: rgba(212, 175, 55, 0.25);
   }
 
   .gfo-arrow--left {
@@ -218,26 +186,25 @@
 
   .gfo-dots {
     position: absolute;
-    bottom: 0.5rem;
     left: 50%;
+    bottom: 0.4rem;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
+    gap: 0.46rem;
   }
 
   .gfo-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 0.54rem;
+    height: 0.54rem;
+    border-radius: 999px;
     border: none;
-    background: #e8b4a0;
+    background: rgba(245, 230, 202, 0.35);
     cursor: pointer;
-    padding: 0;
-    transition: background 0.25s, transform 0.25s;
+    transition: all 0.3s ease;
   }
 
   .gfo-dot.active {
-    background: #c07a6a;
-    transform: scale(1.3);
+    background: var(--choc-gold);
+    transform: scale(1.25);
   }
 }

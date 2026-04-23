@@ -1,46 +1,91 @@
-
-  /* Best selling (Sell) block */
 .bs-section {
   width: 100%;
   overflow-x: hidden;
+  padding: clamp(2.2rem, 4vw, 3rem) 0 clamp(2.6rem, 5vw, 4rem);
+  background: linear-gradient(160deg, rgba(33, 20, 14, 0.92) 0%, rgba(62, 39, 35, 0.95) 100%);
 }
 
 .bs-title-wrap {
   text-align: center;
-  margin: 20px 0;
+  margin: 0 0 1.5rem;
 }
 
 .bs-title-wrap h2 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  font-size: clamp(1.35rem, 4vw, 2rem);
-  color: #3a2a22;
+  font-size: clamp(1.65rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--choc-cream);
 }
 
-/* Full viewport width, centered flex for the image */
 .bs-img-container {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  min-height: min(50vw, 420px);
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
 }
 
-.bs-img {
-  width: 80%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
+.bs-placeholder {
+  width: 100%;
+  min-height: clamp(220px, 42vw, 420px);
+  border-radius: 26px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(212, 175, 55, 0.24) 0%, transparent 36%),
+    linear-gradient(150deg, #2c1810 0%, #3e2723 52%, #5a3a33 100%);
+  box-shadow: var(--choc-shadow);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bs-img-db {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bs-placeholder::before {
+  content: "Best Selling Collection";
+  color: var(--choc-cream);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.bs-placeholder::after {
+  content: "Image will be added later";
+  position: absolute;
+  bottom: 1.1rem;
+  right: 1.25rem;
+  font-size: 0.72rem;
+  color: rgba(245, 230, 202, 0.85);
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
+.bs-placeholder--with-image::before,
+.bs-placeholder--with-image::after {
+  content: none;
+}
+
+.bs-placeholder--with-image::selection {
+  background: transparent;
 }
 
 @media (max-width: 640px) {
-  .bs-img-container {
-    min-height: unset;
+  .bs-placeholder {
+    border-radius: 18px;
+  }
+
+  .bs-placeholder::after {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 0.75rem;
   }
 }

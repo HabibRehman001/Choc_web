@@ -1,24 +1,39 @@
 .hamper-banner {
   width: 100%;
-  height: 410px;
-  background-image: url("https://www.olmecchocolates.com/cdn/shop/files/5-desktop.webp?v=1760956338&width=2000");
+  height: clamp(220px, 34vw, 390px);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(245, 230, 202, 0.18);
+  background:
+    radial-gradient(circle at 78% 26%, rgba(212, 175, 55, 0.25) 0%, transparent 34%),
+    radial-gradient(circle at 22% 76%, rgba(245, 230, 202, 0.12) 0%, transparent 36%),
+    linear-gradient(145deg, #2b160f 0%, #3e2723 55%, #4f342d 100%);
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(245, 230, 202, 0.08);
+  position: relative;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-color: #ded3b9;
 }
 
-@media (max-width: 1024px) {
-  .hamper-banner {
-    height: 340px;
-  }
+.hamper-banner::before {
+  content: "Luxury Hamper Experience";
+  color: var(--choc-cream);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.35rem, 3.4vw, 2.45rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 640px) {
-  .hamper-banner {
-    background-image: url("https://www.olmecchocolates.com/cdn/shop/files/5-mobile.webp?v=1760956344&width=750");
-    height: clamp(210px, 78vw, 320px);
-    background-size: cover;
-    background-position: 34% center;
-  }
+.hamper-banner::after {
+  content: "Image will be added later";
+  position: absolute;
+  bottom: 1rem;
+  color: rgba(245, 230, 202, 0.8);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.hamper-banner--with-image::before,
+.hamper-banner--with-image::after {
+  content: none;
 }

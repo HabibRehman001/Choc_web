@@ -1,286 +1,225 @@
-/* ── Section layout ── */
 .why-section {
+  width: 100%;
   display: flex;
   align-items: center;
-  width: 100vw;
-  background: #fff;
-  border-top: 1px solid #f0e0d8;
-  border-bottom: 1px solid #f0e0d8;
+  background: linear-gradient(170deg, #2c1810 0%, #3e2723 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(245, 230, 202, 0.16);
+  padding: 1.4rem 0;
   overflow: hidden;
-  min-height: 160px;
-  padding: 28px 0;
 }
 
-/* ── Left heading ── */
 .why-heading {
-  flex-shrink: 0;
-  padding: 0 40px 0 48px;
-  min-width: 240px;
-  border-right: 1px solid #f0e0d8;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
+  min-width: 260px;
+  padding: 0 2rem 0 2.4rem;
+  border-right: 1px solid rgba(245, 230, 202, 0.16);
 }
 
 .why-heading h2 {
-  font-family: "Georgia", serif;
-  font-size: 1.85rem;
-  font-weight: 400;
-  color: #3a2a22;
-  line-height: 1.2;
-  white-space: nowrap;
+  margin: 0;
+  color: var(--choc-cream);
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  line-height: 1.1;
 }
 
 .why-us {
-  color: #c07a6a;
-  font-style: italic;
+  color: var(--choc-gold);
 }
 
-/* ── Ticker viewport (clips the scrolling track) ── */
 .ticker-viewport {
   flex: 1;
   overflow: hidden;
   position: relative;
 }
 
-/* Fade-out edges */
 .ticker-viewport::before,
 .ticker-viewport::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 48px;
+  width: 2.6rem;
   z-index: 2;
   pointer-events: none;
 }
+
 .ticker-viewport::before {
   left: 0;
-  background: linear-gradient(to right, #fff, transparent);
+  background: linear-gradient(to right, #2c1810, transparent);
 }
+
 .ticker-viewport::after {
   right: 0;
-  background: linear-gradient(to left, #fff, transparent);
+  background: linear-gradient(to left, #3e2723, transparent);
 }
 
-/* ── Scrolling track ── */
 .ticker-track {
   display: flex;
-  align-items: flex-start;
   width: max-content;
-  animation: ticker-scroll 28s linear infinite;
+  animation: ticker-scroll 26s linear infinite;
 }
 
-/* Pause on hover */
 .ticker-track:hover {
   animation-play-state: paused;
 }
 
 @keyframes ticker-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* moves exactly one copy's width */
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* ── Each feature card ── */
 .ticker-card {
+  min-width: 230px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 8px 40px;
-  min-width: 240px;
-  gap: 10px;
-  border-right: 1px solid #f5ede8;
+  gap: 0.6rem;
+  padding: 0.3rem 1.5rem;
+  border-right: 1px solid rgba(245, 230, 202, 0.12);
 }
 
-/* Icon */
 .ticker-icon {
-  color: #3a2a22;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--choc-gold);
 }
 
-/* Title */
 .ticker-title {
-  font-family: "Georgia", serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #3a2a22;
+  margin: 0;
+  color: var(--choc-cream);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  white-space: nowrap;
+  font-weight: 700;
 }
 
-/* Description */
 .ticker-desc {
-  font-family: "Georgia", serif;
-  font-size: 0.82rem;
-  color: #7a5a50;
-  line-height: 1.45;
+  margin: 0;
+  color: rgba(245, 230, 202, 0.8);
+  line-height: 1.5;
+  font-size: 0.8rem;
   max-width: 180px;
 }
 
-/* ── Responsive ── */
-@media (max-width: 700px) {
-  .why-section {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 24px 0 20px;
-  }
-
-  .why-heading {
-    border-right: none;
-    border-bottom: 1px solid #f0e0d8;
-    padding: 0 24px 20px;
-    min-width: unset;
-    width: 100%;
-    align-self: auto;
-  }
-
-  .why-heading h2 {
-    font-size: 1.4rem;
-  }
-
-  .ticker-card {
-    padding: 4px 28px;
-    min-width: 190px;
-  }
-
-  .ticker-title {
-    font-size: 0.65rem;
-  }
-
-  .ticker-desc {
-    font-size: 0.75rem;
-    max-width: 150px;
-  }
-}
-/*
-////////////////////////
-instagramfeed css
-//////////////////////
-*/
-/* ── Section ── */
 .ig-section {
-  width: 100vw;
-  background: #fff;
-  padding: 48px 0 0;
-  box-sizing: border-box;
+  width: 100%;
+  background: linear-gradient(170deg, #1f120d 0%, #2c1810 100%);
+  padding: clamp(2.4rem, 5vw, 3.6rem) 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
-  border-top: 1px solid #f0e0d8;
+  gap: 1.4rem;
+  border-top: 1px solid rgba(245, 230, 202, 0.14);
 }
 
-/* ── Heading ── */
 .ig-heading {
-  font-family: "Georgia", serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #3a2a22;
   margin: 0;
-  text-align: center;
-  letter-spacing: -0.01em;
+  color: var(--choc-cream);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  text-transform: capitalize;
 }
 
-/* ════════════════════════════════
-   GRID
-   Desktop  : 6 columns  (all 12 posts, 2 rows)
-   Tablet   : 4 columns  (all 12 posts, 3 rows)
-   Mobile   : 2 columns  (only first 4 posts)
-════════════════════════════════ */
 .ig-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 0;
 }
 
-/* ── Each cell ── */
 .ig-cell {
   position: relative;
   display: block;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 1 / 1;
-  /* show all 12 by default */
+  aspect-ratio: 1;
+  background: linear-gradient(150deg, rgba(44, 24, 16, 0.96) 0%, rgba(90, 58, 51, 0.95) 100%);
+  border: 1px solid rgba(245, 230, 202, 0.08);
+  transition: transform 0.3s ease;
 }
 
-/* ── Image ── */
-.ig-img {
+.ig-placeholder {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(212, 175, 55, 0.24) 0%, transparent 30%),
+    linear-gradient(145deg, #2c1810 0%, #5a3a33 100%);
 }
 
-/* ── Hover overlay ── */
+.ig-placeholder--image {
+  object-fit: cover;
+}
+
+.ig-cell:hover {
+  transform: scale(1.02);
+  z-index: 1;
+}
+
 .ig-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(58, 10, 5, 0.45);
+  background: rgba(24, 12, 8, 0.62);
   display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
+.ig-overlay::after {
+  content: "Image from database";
+  color: rgba(245, 230, 202, 0.9);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+}
+
 .ig-cell:hover .ig-overlay {
   opacity: 1;
 }
 
-.ig-cell:hover .ig-img {
-  transform: scale(1.07);
-}
-
-/* Instagram icon inside overlay */
 .ig-icon {
   width: 30px;
   height: 30px;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-  transition: transform 0.25s ease;
 }
 
-.ig-cell:hover .ig-icon {
-  transform: scale(1.05);
-}
-
-/* ════════════════════════════════
-   TABLET  ≤ 1024px  →  4 columns
-════════════════════════════════ */
 @media (max-width: 1024px) {
   .ig-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+}
 
-  /* Show all 12 cells */
-  .ig-cell {
-    display: block;
+@media (max-width: 700px) {
+  .why-section {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem 0;
+  }
+
+  .why-heading {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(245, 230, 202, 0.16);
+    padding: 0 1.2rem 0.9rem;
+  }
+
+  .ticker-card {
+    min-width: 190px;
+    padding-inline: 1rem;
   }
 }
 
-/* ════════════════════════════════
-   MOBILE  ≤ 640px  →  2×2  (4 posts only)
-════════════════════════════════ */
 @media (max-width: 640px) {
-  .ig-section { gap: 20px; padding-top: 36px; }
-
-  .ig-heading { font-size: 1.1rem; }
-
   .ig-grid {
     grid-template-columns: repeat(2, 1fr);
-    width: 100%;
   }
 
-  /* Hide posts 5-12 on mobile — show only first 4 */
-  .ig-cell:nth-child(n+5) {
+  .ig-cell:nth-child(n + 5) {
     display: none;
   }
 
-  .ig-icon { width: 24px; height: 24px; }
+  .ig-icon {
+    width: 24px;
+    height: 24px;
+  }
 }

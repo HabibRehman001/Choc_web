@@ -1,263 +1,200 @@
-/* ── Section wrapper ── */
 .ts-section {
-    width: 100vw;
-    background: #fdf3ee;
-    padding: 64px 64px 56px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    overflow-y: hidden;
-  }
-  
-  /* ── Heading ── */
-  .ts-heading {
-    font-family: "Georgia", serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #3a2a22;
-    margin: 0;
-    text-align: center;
-    letter-spacing: -0.01em;
-  }
-  
-  /* ════════════════════════════════
-     DESKTOP GRID
-  ════════════════════════════════ */
+  width: 100%;
+  background: linear-gradient(170deg, #1f120d 0%, #2c1810 100%);
+  padding: clamp(2.8rem, 5vw, 4.2rem) clamp(1rem, 6vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ts-heading {
+  margin: 0;
+  color: var(--choc-cream);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  text-align: center;
+}
+
+.ts-grid {
+  width: 100%;
+  max-width: 1120px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.4rem);
+}
+
+.ts-card {
+  background: linear-gradient(155deg, rgba(90, 58, 51, 0.72) 0%, rgba(62, 39, 35, 0.92) 100%);
+  border: 1px solid rgba(245, 230, 202, 0.16);
+  border-radius: 16px;
+  padding: 1.3rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: var(--choc-shadow);
+}
+
+.ts-quote-bubble {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #d4af37 0%, #b8922b 100%);
+}
+
+.ts-quote-icon {
+  color: var(--choc-ink);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.ts-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.ts-star {
+  color: rgba(245, 230, 202, 0.33);
+}
+
+.ts-star.filled {
+  color: var(--choc-gold);
+}
+
+.ts-text {
+  margin: 0;
+  color: rgba(245, 230, 202, 0.86);
+  line-height: 1.75;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.ts-divider {
+  height: 1px;
+  background: rgba(245, 230, 202, 0.16);
+}
+
+.ts-author {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+}
+
+.ts-avatar-img,
+.ts-avatar-letter {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 999px;
+}
+
+.ts-avatar-letter {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.ts-name {
+  color: var(--choc-cream);
+  font-size: 0.9rem;
+}
+
+.ts-mobile-wrap {
+  display: none;
+}
+
+@media (max-width: 900px) {
   .ts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    width: 100%;
-    max-width: 1100px;
-    overflow-y: hidden;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  /* ── Card ── */
-  .ts-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 28px 28px 24px;
+}
+
+@media (max-width: 640px) {
+  .ts-section {
+    padding-inline: 0;
+  }
+
+  .ts-heading {
+    padding-inline: 1.2rem;
+  }
+
+  .ts-grid {
+    display: none;
+  }
+
+  .ts-mobile-wrap {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    box-shadow: 0 2px 16px rgba(192, 122, 106, 0.07);
-  overflow: hidden;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
   }
-  
-  /* Quote bubble */
-  .ts-quote-bubble {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #e8b4a0;
+
+  .ts-mobile-track {
+    width: 100%;
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 0.4rem 1rem;
+  }
+
+  .ts-mobile-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ts-mobile-card {
+    width: calc(100vw - 2rem);
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .ts-mobile-card--active {
+    opacity: 1;
+  }
+
+  .ts-dots {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  overflow: hidden;
+    gap: 0.55rem;
   }
-  
-  .ts-quote-icon {
-    font-family: "Georgia", serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-  margin-top: -2px;
-  display: inline-block;
+
+  .ts-dot {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: transparent;
+    color: var(--choc-cream);
+    cursor: pointer;
+    padding: 0;
+    display: grid;
+    place-items: center;
   }
-  
-  /* Stars */
-  .ts-stars {
+
+  .ts-dot--active {
+    background: rgba(212, 175, 55, 0.2);
+  }
+
+  .ts-dot-icon {
     display: flex;
-    gap: 3px;
+    gap: 0.2rem;
   }
-  .ts-star {
-    font-size: 1.1rem;
-    color: #e0ccc8;
+
+  .ts-bar {
+    width: 3px;
+    height: 10px;
+    background: var(--choc-gold);
+    border-radius: 99px;
   }
-  .ts-star.filled {
-    color: #e8453c;
+
+  .ts-dot-icon--play {
+    font-size: 0.5rem;
+    color: var(--choc-gold);
+    padding-left: 2px;
   }
-  
-  /* Review text */
-  .ts-text {
-    font-family: "Georgia", serif;
-    font-size: 0.88rem;
-    color: #5a4a42;
-    line-height: 1.7;
-    margin: 0;
-    flex: 1;
-  }
-  
-  /* Divider */
-  .ts-divider {
-    height: 1px;
-    background: #f0e0d8;
-    border: none;
-    margin: 2px 0;
-  }
-  
-  /* Author row */
-  .ts-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .ts-avatar-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-  
-  .ts-avatar-letter {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Georgia", serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  
-  .ts-name {
-    font-family: "Georgia", serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #3a2a22;
-  }
-  
-  /* ════════════════════════════════
-     MOBILE — hidden on desktop
-  ════════════════════════════════ */
-  .ts-mobile-wrap { display: none; }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — tablet
-  ════════════════════════════════ */
-  @media (max-width: 900px) {
-    .ts-section { padding: 48px 32px 44px; }
-    .ts-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — mobile
-  ════════════════════════════════ */
-  @media (max-width: 640px) {
-    .ts-section {
-      padding: 40px 0 44px;
-      gap: 28px;
-    }
-  
-    .ts-heading {
-      font-size: 1.3rem;
-      padding: 0 24px;
-    }
-  
-    /* Hide desktop grid */
-    .ts-grid { display: none; }
-  
-    /* Show mobile slider */
-    .ts-mobile-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      overflow-y: hidden;
-    }
-  
-    /* Horizontal scroll track — snaps to each card */
-    .ts-mobile-track {
-      display: flex;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      gap: 16px;
-      padding: 8px 24px;
-      box-sizing: border-box;
-    }
-    .ts-mobile-track::-webkit-scrollbar { display: none; }
-  
-    .ts-mobile-card {
-      scroll-snap-align: center;
-      flex-shrink: 0;
-      width: calc(100vw - 48px);
-      transition: opacity 0.3s;
-      opacity: 0.55;
-    }
-  
-    .ts-mobile-card--active {
-      opacity: 1;
-    }
-  
-    /* ── Dots ── */
-    .ts-dots {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-  
-    .ts-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1.5px solid #c8a098;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, border-color 0.2s;
-      padding: 0;
-    }
-  
-    /* Active dot gets filled */
-    .ts-dot--active {
-      background: #3a2a22;
-      border-color: #3a2a22;
-    }
-  
-    /* Inactive dot — plain circle */
-    .ts-dot:not(.ts-dot--active) {
-      background: transparent;
-    }
-  
-    /* Icon container inside active dot */
-    .ts-dot-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      width: 100%;
-      height: 100%;
-    }
-  
-    /* Pause bars */
-    .ts-bar {
-      display: block;
-      width: 3px;
-      height: 10px;
-      background: #fff;
-      border-radius: 2px;
-    }
-  
-    /* Play triangle */
-    .ts-dot-icon--play {
-      font-size: 0.5rem;
-      color: #fff;
-      padding-left: 2px;
-    }
-  }
+}

@@ -1,167 +1,131 @@
-/* ── Section ── */
 .cg-section {
-    width: 100vw;
-    background: #fdf6f3;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 72px 96px 72px 96px;
-    gap: 48px;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  
-  /* ════════════════════════════════
-     LEFT TEXT BLOCK
-  ════════════════════════════════ */
-  .cg-text {
-    flex: 0 0 480px;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  
-  .cg-heading {
-    font-family: "Georgia", serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    font-style: italic;
-    color: #3a2a22;
-    line-height: 1.2;
-    margin: 0;
-  }
-  
-  .cg-subheading {
-    font-family: "Georgia", serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #5a4a42;
-    margin: 0;
-  }
-  
-  .cg-body {
-    font-family: "Georgia", serif;
-    font-size: 0.88rem;
-    color: #7a5a50;
-    line-height: 1.75;
-    margin: 0;
-    max-width: 420px;
-  }
-  
-  /* CTA button */
-  .cg-btn {
-    align-self: flex-start;
-    margin-top: 8px;
-    background: #e8b4a0;
-    color: #3a2a22;
-    border: none;
-    border-radius: 8px;
-    padding: 13px 28px;
-    font-family: "Georgia", serif;
-    font-size: 0.88rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.22s, transform 0.18s;
-    letter-spacing: 0.01em;
-  }
-  .cg-btn:hover {
-    background: #c07a6a;
-    color: #fff;
-    transform: translateY(-2px);
-  }
-  .cg-btn:active {
-    transform: translateY(0);
-  }
-  
-  /* ════════════════════════════════
-     RIGHT IMAGE
-  ════════════════════════════════ */
-  .cg-img-wrap {
-    position: relative;
-    flex-shrink: 0;
-  width: 480px;
-  height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.8rem, 4vw, 3.6rem);
+  padding: clamp(2.6rem, 5vw, 4.5rem) clamp(1rem, 6vw, 6rem);
+  background: linear-gradient(170deg, #2b170f 0%, #3e2723 100%);
+}
+
+.cg-text {
+  flex: 0 1 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cg-heading {
+  margin: 0;
+  color: var(--choc-cream);
+  font-size: clamp(2rem, 3.7vw, 3rem);
+  line-height: 1.05;
+}
+
+.cg-subheading {
+  margin: 0;
+  color: var(--choc-gold);
+  font-size: 1rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.cg-body {
+  margin: 0;
+  color: rgba(245, 230, 202, 0.84);
+  line-height: 1.8;
+  max-width: 32rem;
+}
+
+.cg-btn {
+  margin-top: 0.4rem;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--choc-cream);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cg-btn:hover {
+  background: var(--choc-gold);
+  color: var(--choc-ink);
+  transform: translateY(-2px);
+}
+
+.cg-img-wrap {
+  position: relative;
+  width: min(500px, 45vw);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.cg-blob-bg {
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 60% 40% 54% 46% / 44% 56% 46% 54%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(212, 175, 55, 0.28) 0%, transparent 36%),
+    linear-gradient(150deg, #3e2723 0%, #5a3a33 100%);
+  border: 1px solid rgba(245, 230, 202, 0.18);
+}
+
+.cg-circle {
+  width: 84%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  background:
+    radial-gradient(circle at 65% 20%, rgba(245, 230, 202, 0.15) 0%, transparent 34%),
+    linear-gradient(145deg, #2c1810 0%, #4a312b 100%);
+  box-shadow: var(--choc-shadow);
+  display: grid;
+  place-items: center;
+  position: relative;
   overflow: hidden;
+}
+
+.cg-circle::before {
+  content: "Image will be added later";
+  color: rgba(245, 230, 202, 0.85);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cg-circle--with-image::before {
+  content: none;
+}
+
+.cg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .cg-section {
+    padding-inline: clamp(1rem, 4vw, 3rem);
   }
-  
-  /* Soft blob behind the circle */
-  .cg-blob-bg {
-    position: absolute;
-    inset: -20px -30px -20px 10px;
-    background: #f0d8cc;
-    border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
-    z-index: 0;
+
+  .cg-img-wrap {
+    width: min(390px, 44vw);
   }
-  
-  /* Circular clipped image */
-  .cg-circle {
-    position: relative;
-    z-index: 1;
-  width: 400px;
-  height: 400px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 16px 56px rgba(192, 122, 106, 0.22);
+}
+
+@media (max-width: 760px) {
+  .cg-section {
+    flex-direction: column-reverse;
+    text-align: center;
   }
-  
-  .cg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
+
+  .cg-text {
+    align-items: center;
   }
-  .cg-circle:hover .cg-img {
-    transform: scale(1.05);
+
+  .cg-img-wrap {
+    width: min(320px, 78vw);
   }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — tablet
-  ════════════════════════════════ */
-  @media (max-width: 1024px) {
-    .cg-section {
-      padding: 56px 48px;
-      gap: 36px;
-    }
-  
-    .cg-text {
-      flex: 1;
-      max-width: 100%;
-    }
-  
-    .cg-heading   { font-size: 2rem; }
-  
-    .cg-img-wrap  { width: 340px; height: 340px; }
-    .cg-circle    { width: 300px; height: 300px; }
-  }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — mobile
-  ════════════════════════════════ */
-  @media (max-width: 700px) {
-    .cg-section {
-      flex-direction: column-reverse;   /* image on top, text below */
-      padding: 40px 24px 48px;
-      gap: 28px;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .cg-text {
-      align-items: center;
-      max-width: 100%;
-    }
-  
-    .cg-body    { max-width: 100%; }
-    .cg-heading { font-size: 1.7rem; }
-    .cg-btn     { align-self: center; }
-  
-    .cg-img-wrap { width: 280px; height: 280px; }
-    .cg-circle   { width: 240px; height: 240px; }
-  
-    .cg-blob-bg  { inset: -12px -16px -12px 6px; }
-  }
+}

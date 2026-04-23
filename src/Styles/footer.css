@@ -1,241 +1,172 @@
-/* ── Footer wrapper ── */
 .ft-footer {
-    width: 100vw;
-    background: #fdf3ee;
-    box-sizing: border-box;
-    font-family: "Georgia", serif;
-  }
-  
-  /* ════════════════════════════════
-     MAIN CONTENT AREA
-  ════════════════════════════════ */
+  width: 100%;
+  background: linear-gradient(160deg, #23140f 0%, #2c1810 55%, #3e2723 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.ft-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 5vw, 3.6rem) clamp(1rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.1fr 1.4fr;
+  gap: 2rem 2.4rem;
+}
+
+.ft-col-heading {
+  margin: 0 0 0.8rem;
+  color: var(--choc-cream);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.ft-social-heading {
+  margin-top: 1.25rem;
+}
+
+.ft-contact-list,
+.ft-link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.52rem;
+}
+
+.ft-contact-list li,
+.ft-link-list a {
+  color: rgba(245, 230, 202, 0.82);
+  font-size: 0.87rem;
+  line-height: 1.55;
+  text-decoration: none;
+}
+
+.ft-link-list a,
+.ft-contact-list a,
+.ft-dev-link {
+  transition: color 0.3s ease;
+}
+
+.ft-link-list a:hover,
+.ft-contact-list a:hover,
+.ft-dev-link:hover {
+  color: var(--choc-gold);
+}
+
+.ft-label {
+  color: var(--choc-cream);
+  font-weight: 700;
+}
+
+.ft-email-row {
+  display: flex;
+  border: 1px solid rgba(245, 230, 202, 0.24);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(245, 230, 202, 0.08);
+}
+
+.ft-email-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--choc-cream);
+  padding: 0.72rem 0.95rem;
+  min-width: 0;
+}
+
+.ft-email-input::placeholder {
+  color: rgba(245, 230, 202, 0.6);
+}
+
+.ft-email-input:focus {
+  outline: none;
+}
+
+.ft-submit-btn {
+  border: none;
+  background: linear-gradient(130deg, #d4af37 0%, #b8922b 100%);
+  color: var(--choc-ink);
+  padding: 0.72rem 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.ft-submit-btn:hover {
+  filter: brightness(1.08);
+}
+
+.ft-social-row {
+  display: flex;
+  gap: 0.68rem;
+}
+
+.ft-social-btn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.44);
+  background: rgba(212, 175, 55, 0.14);
+  color: var(--choc-cream);
+  transition: all 0.3s ease;
+}
+
+.ft-social-btn:hover {
+  background: rgba(212, 175, 55, 0.24);
+  color: var(--choc-gold);
+  transform: translateY(-2px);
+}
+
+.ft-social-btn svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.ft-bottom {
+  border-top: 1px solid rgba(245, 230, 202, 0.12);
+  text-align: center;
+  padding: 0.95rem 1rem;
+  background: rgba(17, 9, 6, 0.4);
+}
+
+.ft-bottom p {
+  margin: 0;
+  color: rgba(245, 230, 202, 0.82);
+  font-size: 0.8rem;
+}
+
+.ft-brand {
+  color: var(--choc-gold);
+  font-weight: 700;
+}
+
+.ft-dev-link {
+  color: var(--choc-cream);
+}
+
+@media (max-width: 900px) {
   .ft-main {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1.1fr 1.4fr;
-    gap: 32px 48px;
-    padding: 48px 80px 44px;
-    max-width: 1280px;
-    margin: 0 auto;
-    box-sizing: border-box;
+    grid-template-columns: 1fr 1fr;
   }
-  
-  /* ── Column heading ── */
-  .ft-col-heading {
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #3a2a22;
-    margin: 0 0 16px;
-    letter-spacing: 0.01em;
+}
+
+@media (max-width: 600px) {
+  .ft-main {
+    grid-template-columns: 1fr;
+    padding-inline: 1.25rem;
+    gap: 1.5rem;
   }
-  
-  .ft-social-heading {
-    margin-top: 24px;
-  }
-  
-  /* ════════════════════════════════
-     CONTACT LIST
-  ════════════════════════════════ */
-  .ft-contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-  }
-  
-  .ft-contact-list li {
-    font-size: 0.82rem;
-    color: #5a4a42;
-    line-height: 1.5;
-  }
-  
-  .ft-label {
-    font-weight: 700;
-    color: #3a2a22;
-  }
-  
-  .ft-contact-list a {
-    color: #5a4a42;
-    text-decoration: none;
-    transition: color 0.18s;
-  }
-  .ft-contact-list a:hover {
-    color: #c07a6a;
-  }
-  
-  /* ════════════════════════════════
-     NAV LINK LISTS
-  ════════════════════════════════ */
-  .ft-link-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .ft-link-list a {
-    font-size: 0.84rem;
-    color: #5a4a42;
-    text-decoration: none;
-    transition: color 0.18s;
-    display: inline-block;
-  }
-  .ft-link-list a:hover {
-    color: #c07a6a;
-  }
-  
-  /* ════════════════════════════════
-     EMAIL INPUT ROW
-  ════════════════════════════════ */
+
   .ft-email-row {
-    display: flex;
-    align-items: stretch;
-    border: 1px solid #d8c8c0;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
+    border-radius: 14px;
+    flex-direction: column;
   }
-  
-  .ft-email-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 11px 14px;
-    font-family: "Georgia", serif;
-    font-size: 0.8rem;
-    color: #3a2a22;
-    background: transparent;
-    min-width: 0;
-  }
-  .ft-email-input::placeholder {
-    color: #b0a098;
-  }
-  
+
   .ft-submit-btn {
-    flex-shrink: 0;
-    background: #e8b4a0;
-    border: none;
-    padding: 11px 20px;
-    font-family: "Georgia", serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #3a2a22;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
+    width: 100%;
   }
-  .ft-submit-btn:hover {
-    background: #c07a6a;
-    color: #fff;
-  }
-  
-  /* ════════════════════════════════
-     SOCIAL ICONS
-  ════════════════════════════════ */
-  .ft-social-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  
-  .ft-social-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #3a2a22;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.18s;
-    flex-shrink: 0;
-  }
-  
-  .ft-social-btn svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .ft-social-btn:hover {
-    background: #c07a6a;
-    transform: scale(1.1);
-  }
-  
-  /* ════════════════════════════════
-     BOTTOM BAR
-  ════════════════════════════════ */
-  .ft-bottom {
-    background: #e8b4a0;
-    padding: 14px 24px;
-    text-align: center;
-  }
-  
-  .ft-bottom p {
-    font-size: 0.78rem;
-    color: #3a2a22;
-    margin: 0;
-  }
-  
-  .ft-brand {
-    color: #c07a6a;
-    font-weight: 700;
-  }
-  
-  .ft-dev-link {
-    color: #3a2a22;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.18s;
-  }
-  .ft-dev-link:hover {
-    color: #7a3a2a;
-  }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — tablet  ≤ 900px
-  ════════════════════════════════ */
-  @media (max-width: 900px) {
-    .ft-main {
-      grid-template-columns: 1fr 1fr;
-      padding: 40px 40px 36px;
-      gap: 28px 36px;
-    }
-  }
-  
-  /* ════════════════════════════════
-     RESPONSIVE — mobile  ≤ 600px
-  ════════════════════════════════ */
-  @media (max-width: 600px) {
-    .ft-main {
-      grid-template-columns: 1fr;
-      padding: 32px 24px 28px;
-      gap: 28px;
-    }
-  
-    .ft-col-heading { font-size: 0.88rem; }
-  
-    .ft-email-row {
-      flex-direction: column;
-      border-radius: 8px;
-    }
-  
-    .ft-email-input {
-      border-bottom: 1px solid #e0d0c8;
-      padding: 12px 14px;
-    }
-  
-    .ft-submit-btn {
-      padding: 12px;
-      text-align: center;
-    }
-  
-    .ft-bottom p {
-      font-size: 0.72rem;
-      line-height: 1.6;
-    }
-  }
+}
