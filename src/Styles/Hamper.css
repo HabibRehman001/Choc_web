@@ -13,6 +13,8 @@
   position: relative;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .hamper-banner::before {
@@ -36,4 +38,19 @@
 .hamper-banner--with-image::before,
 .hamper-banner--with-image::after {
   content: none;
+}
+
+.hamper-banner--with-image {
+  box-shadow:
+    0 12px 24px rgba(10, 6, 4, 0.18),
+    inset 0 -44px 58px -42px rgba(255, 255, 255, 0.56);
+}
+
+.hamper-banner--with-image:hover {
+  transform: translateY(-3px) scale(1.01);
+  border-top-color: rgba(255, 255, 255, 0.42);
+  border-bottom-color: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    0 16px 30px rgba(10, 6, 4, 0.24),
+    inset 0 -52px 68px -44px rgba(255, 255, 255, 0.64);
 }

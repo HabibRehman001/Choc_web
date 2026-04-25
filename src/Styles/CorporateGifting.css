@@ -85,6 +85,7 @@
   place-items: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .cg-circle::before {
@@ -99,10 +100,23 @@
   content: none;
 }
 
+.cg-circle--with-image {
+  background: #2a1710;
+  border-color: rgba(245, 230, 202, 0.35);
+}
+
 .cg-image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
+  transform: scale(1.05);
+  transition: transform 0.35s ease;
+}
+
+.cg-circle--with-image:hover .cg-image {
+  transform: scale(1.09);
 }
 
 @media (max-width: 1024px) {

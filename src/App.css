@@ -38,6 +38,8 @@
   place-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .bs-img-db {
@@ -46,6 +48,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
 }
 
 .bs-placeholder::before {
@@ -72,6 +75,24 @@
 .bs-placeholder--with-image::before,
 .bs-placeholder--with-image::after {
   content: none;
+}
+
+.bs-placeholder--with-image {
+  box-shadow:
+    0 18px 34px rgba(10, 6, 4, 0.35),
+    inset 0 -52px 64px -42px rgba(255, 255, 255, 0.52);
+}
+
+.bs-placeholder--with-image:hover {
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.48);
+  box-shadow:
+    0 24px 42px rgba(10, 6, 4, 0.42),
+    inset 0 -60px 78px -44px rgba(255, 255, 255, 0.62);
+}
+
+.bs-placeholder--with-image:hover .bs-img-db {
+  transform: scale(1.02);
 }
 
 .bs-placeholder--with-image::selection {

@@ -22,6 +22,9 @@ const FALLBACK_SLIDES = [
   },
 ];
 
+const stripSliderImageSuffix = (text = "") =>
+  text.replace(/\s*slider\s*image\s*\d+\s*$/i, "").trim();
+
 export default function HomeHeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [apiSlides, setApiSlides] = useState([]);
@@ -33,7 +36,7 @@ export default function HomeHeroSlider() {
 
         const slides = images.map((image, index) => ({
           id: image.id,
-          title: image.altText || `Luxury Chocolate ${index + 1}`,
+          title: stripSliderImageSuffix(image.altText || "") || `Luxury Chocolate ${index + 1}`,
           subtitle: image.originalName || "Hand-finished dessert collection",
           imageUrl: image.url,
         }));
@@ -91,14 +94,13 @@ export default function HomeHeroSlider() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(212,175,55,0.28),transparent_35%)]" />
               )}
 
-              <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(20,10,7,0.82),rgba(20,10,7,0.2))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(20,10,7,0.25),rgba(20,10,7,0.08))]" />
 
               <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-10 md:px-14 max-w-[700px] text-[#f5e6ca] gap-3">
                 <p className="uppercase tracking-[0.2em] text-[0.65rem] sm:text-[0.72rem] text-[#d4af37]">
                   Luxury Dessert House
                 </p>
                 <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl leading-tight">{slide.title}</h1>
-                <p className="text-sm sm:text-base text-[#f5e6cae0]">{slide.subtitle}</p>
               </div>
             </div>
           </div>
@@ -107,31 +109,19 @@ export default function HomeHeroSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-[#d4af3773] bg-[#2c1810b5] hover:bg-[#3e2723f0] flex items-center justify-center text-[#f5e6ca] text-2xl shadow-md z-10 transition-all"
+        className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-[#d4af3773] bg-[#2c1810b5] hover:bg-[#3e2723f0] items-center justify-center text-[#f5e6ca] text-2xl shadow-md z-10 transition-all"
         aria-label="Previous"
       >
         ‹
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-[#d4af3773] bg-[#2c1810b5] hover:bg-[#3e2723f0] flex items-center justify-center text-[#f5e6ca] text-2xl shadow-md z-10 transition-all"
+        className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-[#d4af3773] bg-[#2c1810b5] hover:bg-[#3e2723f0] items-center justify-center text-[#f5e6ca] text-2xl shadow-md z-10 transition-all"
         aria-label="Next"
       >
         ›
       </button>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 h-4 flex items-center gap-2 px-2 overflow-hidden">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentSlide(i)}
-            className={`appearance-none block shrink-0 rounded-full border-0 outline-none transition-all duration-250 p-0 leading-none cursor-pointer ${
-              i === currentSlide ? "w-3 h-3 bg-[#d4af37] scale-110" : "w-2.5 h-2.5 bg-[#f5e6ca80]"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 }

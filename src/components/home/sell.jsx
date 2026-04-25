@@ -7,7 +7,7 @@ export default function Sell() {
   useEffect(() => {
     const load = async () => {
       try {
-        const images = await fetchImagesByTag("sell-banner", 1);
+        const images = await fetchImagesByTag("bestsell", 1);
         setImageUrl(images[0]?.url || null);
       } catch (error) {
         console.error("Failed to load sell banner image", error);

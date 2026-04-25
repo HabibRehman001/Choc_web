@@ -168,7 +168,7 @@
 }
 
 .ig-overlay::after {
-  content: "Image from database";
+  content: "Random from Unsplash";
   color: rgba(245, 230, 202, 0.9);
   font-size: 0.64rem;
   letter-spacing: 0.04em;

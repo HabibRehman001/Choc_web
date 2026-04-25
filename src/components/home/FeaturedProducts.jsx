@@ -6,37 +6,37 @@ const CATEGORIES = [
   {
     label: "Chocolate bars",
     products: [
-      { id: 1, name: "Pistachio Kunafa Bar 36%", price: 800, tone: "linear-gradient(140deg, #2c1810 0%, #4a312b 100%)" },
-      { id: 2, name: "Sugar Free Dark Bar 70%", price: 1500, tone: "linear-gradient(140deg, #3e2723 0%, #5a3a33 100%)" },
-      { id: 3, name: "70% Dark Chocolate Bar", price: 1400, tone: "linear-gradient(140deg, #2b160f 0%, #4f342d 100%)" },
-      { id: 4, name: "Hazelnut Milk Bar 36%", price: 1400, tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
+      { id: 1, name: "Pistachio Kunafa Bar 36%", price: 800, imageTag: "fp-bars-pitashhio", tone: "linear-gradient(140deg, #2c1810 0%, #4a312b 100%)" },
+      { id: 2, name: "Sugar Free Dark Bar 70%", price: 1500, imageTag: "fp-bars-sugarfree", tone: "linear-gradient(140deg, #3e2723 0%, #5a3a33 100%)" },
+      { id: 3, name: "70% Dark Chocolate Bar", price: 1400, imageTag: "fp-bars-darkchoc", tone: "linear-gradient(140deg, #2b160f 0%, #4f342d 100%)" },
+      { id: 4, name: "Hazelnut Milk Bar 36%", price: 1400, imageTag: "fp-bars-hazelnut", tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
     ],
   },
   {
     label: "Chocolate boxes",
     products: [
-      { id: 5, name: "Signature Box Of 9", price: 1880, tone: "linear-gradient(140deg, #3e2723 0%, #4a312b 100%)" },
-      { id: 6, name: "Assorted Gift Box 16", price: 2800, tone: "linear-gradient(140deg, #2c1810 0%, #5a3a33 100%)" },
-      { id: 7, name: "Dark Truffle Box", price: 2200, tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
-      { id: 8, name: "Praline Collection", price: 3100, tone: "linear-gradient(140deg, #2b170f 0%, #5f3e35 100%)" },
+      { id: 5, name: "Signature Box Of 9", price: 1880, imageTag: "fp-boxes-boxof9", tone: "linear-gradient(140deg, #3e2723 0%, #4a312b 100%)" },
+      { id: 6, name: "Assorted Gift Box 16", price: 2800, imageTag: "fp-boxes-boxof16", tone: "linear-gradient(140deg, #2c1810 0%, #5a3a33 100%)" },
+      { id: 7, name: "Dark Truffle Box", price: 2200, imageTag: "fp-boxes-darktruffle", tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
+      { id: 8, name: "Praline Collection", price: 3100, imageTag: "fp-boxes-praline", tone: "linear-gradient(140deg, #2b170f 0%, #5f3e35 100%)" },
     ],
   },
   {
     label: "Gifts hampers",
     products: [
-      { id: 9, name: "Classic Hamper", price: 4500, tone: "linear-gradient(140deg, #2c1810 0%, #573831 100%)" },
-      { id: 10, name: "Luxury Hamper", price: 6800, tone: "linear-gradient(140deg, #3e2723 0%, #6b473e 100%)" },
-      { id: 11, name: "Birthday Hamper", price: 5200, tone: "linear-gradient(140deg, #35211b 0%, #5a3a33 100%)" },
-      { id: 12, name: "Corporate Hamper", price: 7500, tone: "linear-gradient(140deg, #2b160f 0%, #4a312b 100%)" },
+      { id: 9, name: "Classic Hamper", price: 4500, imageTag: "fp-hampers-classic", tone: "linear-gradient(140deg, #2c1810 0%, #573831 100%)" },
+      { id: 10, name: "Luxury Hamper", price: 6800, imageTag: "fp-hampers-luxury", tone: "linear-gradient(140deg, #3e2723 0%, #6b473e 100%)" },
+      { id: 11, name: "Birthday Hamper", price: 5200, imageTag: "fp-hampers-birthday", tone: "linear-gradient(140deg, #35211b 0%, #5a3a33 100%)" },
+      { id: 12, name: "Corporate Hamper", price: 7500, imageTag: "fp-hampers-corporate", tone: "linear-gradient(140deg, #2b160f 0%, #4a312b 100%)" },
     ],
   },
   {
     label: "Cakes",
     products: [
-      { id: 13, name: "Berry Cream Cake", price: 3200, tone: "linear-gradient(140deg, #4a312b 0%, #6e4a40 100%)" },
-      { id: 14, name: "Eid Bento Cake", price: 3200, tone: "linear-gradient(140deg, #3e2723 0%, #5f3e35 100%)" },
-      { id: 15, name: "Lemon Cream Cake", price: 2900, tone: "linear-gradient(140deg, #2c1810 0%, #5a3a33 100%)" },
-      { id: 16, name: "Vanilla Naked Cake", price: 3000, tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
+      { id: 13, name: "Berry Cream Cake", price: 3200, imageTag: "fp-cakes-berrycream", tone: "linear-gradient(140deg, #4a312b 0%, #6e4a40 100%)" },
+      { id: 14, name: "Eid Bento Cake", price: 3200, imageTag: "fp-cakes-eid", tone: "linear-gradient(140deg, #3e2723 0%, #5f3e35 100%)" },
+      { id: 15, name: "Lemon Cream Cake", price: 2900, imageTag: "fp-cakes-lemon", tone: "linear-gradient(140deg, #2c1810 0%, #5a3a33 100%)" },
+      { id: 16, name: "Vanilla Naked Cake", price: 3000, imageTag: "fp-cakes-vanilla", tone: "linear-gradient(140deg, #35211b 0%, #6b473e 100%)" },
     ],
   },
 ];
@@ -69,7 +69,7 @@ const ArrowRight = () => (
   </svg>
 );
 
-function ProductCard({ product, imageUrl }) {
+function ProductCard({ product, imageUrl, useFeaturedImageHover }) {
   const [wishlisted, setWishlisted] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -79,7 +79,7 @@ function ProductCard({ product, imageUrl }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="fp-img-wrap">
+      <div className={`fp-img-wrap${useFeaturedImageHover && imageUrl ? " fp-img-wrap--bars" : ""}`}>
         {imageUrl ? (
           <img src={imageUrl} alt={product.name} className="fp-img-db" loading="lazy" />
         ) : (
@@ -119,6 +119,10 @@ function ProductCard({ product, imageUrl }) {
 export default function FeaturedProducts() {
   const [activeTab, setActiveTab] = useState(0);
   const [images, setImages] = useState([]);
+  const [barImagesByTag, setBarImagesByTag] = useState({});
+  const [boxImagesByTag, setBoxImagesByTag] = useState({});
+  const [hamperImagesByTag, setHamperImagesByTag] = useState({});
+  const [cakeImagesByTag, setCakeImagesByTag] = useState({});
   const current = CATEGORIES[activeTab];
 
   useEffect(() => {
@@ -132,6 +136,82 @@ export default function FeaturedProducts() {
     };
 
     load();
+  }, []);
+
+  useEffect(() => {
+    const loadBarImages = async () => {
+      try {
+        const tags = CATEGORIES[0].products.map((product) => product.imageTag);
+        const results = await Promise.all(
+          tags.map(async (tag) => {
+            const matched = await fetchImagesByTag(tag, 1);
+            return [tag, matched];
+          })
+        );
+        setBarImagesByTag(Object.fromEntries(results));
+      } catch (error) {
+        console.error("Failed to load chocolate bar images", error);
+      }
+    };
+
+    loadBarImages();
+  }, []);
+
+  useEffect(() => {
+    const loadBoxImages = async () => {
+      try {
+        const tags = CATEGORIES[1].products.map((product) => product.imageTag);
+        const results = await Promise.all(
+          tags.map(async (tag) => {
+            const matched = await fetchImagesByTag(tag, 1);
+            return [tag, matched];
+          })
+        );
+        setBoxImagesByTag(Object.fromEntries(results));
+      } catch (error) {
+        console.error("Failed to load chocolate box images", error);
+      }
+    };
+
+    loadBoxImages();
+  }, []);
+
+  useEffect(() => {
+    const loadHamperImages = async () => {
+      try {
+        const tags = CATEGORIES[2].products.map((product) => product.imageTag);
+        const results = await Promise.all(
+          tags.map(async (tag) => {
+            const matched = await fetchImagesByTag(tag, 1);
+            return [tag, matched];
+          })
+        );
+        setHamperImagesByTag(Object.fromEntries(results));
+      } catch (error) {
+        console.error("Failed to load hamper images", error);
+      }
+    };
+
+    loadHamperImages();
+  }, []);
+
+  useEffect(() => {
+    const loadCakeImages = async () => {
+      try {
+        const tags = CATEGORIES[3].products.map((product) => product.imageTag);
+        const results = await Promise.all(
+          tags.map(async (tag) => {
+            const matched = await fetchImagesByTag(tag, 1);
+            return [tag, matched];
+          })
+        );
+        setCakeImagesByTag(Object.fromEntries(results));
+      } catch (error) {
+        console.error("Failed to load cake images", error);
+      }
+    };
+
+    loadCakeImages();
   }, []);
 
   return (
@@ -151,9 +231,24 @@ export default function FeaturedProducts() {
       </div>
 
       <div className="fp-grid">
-        {current.products.map((p, idx) => (
-          <ProductCard key={p.id} product={p} imageUrl={getCycledImageUrl(images, activeTab * 4 + idx)} />
-        ))}
+        {current.products.map((p, idx) => {
+          const isChocolateBars = activeTab === 0;
+          const isChocolateBoxes = activeTab === 1;
+          const isHampers = activeTab === 2;
+          const isCakes = activeTab === 3;
+          const imageUrl = isChocolateBars
+            ? barImagesByTag[p.imageTag]?.[0]?.url || null
+            : isChocolateBoxes
+            ? boxImagesByTag[p.imageTag]?.[0]?.url || null
+            : isHampers
+            ? hamperImagesByTag[p.imageTag]?.[0]?.url || null
+            : isCakes
+            ? cakeImagesByTag[p.imageTag]?.[0]?.url || null
+            : getCycledImageUrl(images, activeTab * 4 + idx);
+          const useFeaturedImageHover = isChocolateBars || isChocolateBoxes || isHampers;
+
+          return <ProductCard key={p.id} product={p} imageUrl={imageUrl} useFeaturedImageHover={useFeaturedImageHover} />;
+        })}
       </div>
 
       <div className="fp-view-all-wrap">

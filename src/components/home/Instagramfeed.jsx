@@ -1,20 +1,18 @@
-import { useEffect, useMemo, useState } from "react";
 import "../../Styles/Whychooseus.css";
-import { fetchImagesByTag, getCycledImageUrl } from "../../utils/imageApi";
 
 const POSTS = [
-  { id: 1, tone: "linear-gradient(145deg, #2c1810 0%, #4a312b 100%)" },
-  { id: 2, tone: "linear-gradient(145deg, #3e2723 0%, #5a3a33 100%)" },
-  { id: 3, tone: "linear-gradient(145deg, #35211b 0%, #6b473e 100%)" },
-  { id: 4, tone: "linear-gradient(145deg, #2b160f 0%, #4f342d 100%)" },
-  { id: 5, tone: "linear-gradient(145deg, #2c1810 0%, #5a3a33 100%)" },
-  { id: 6, tone: "linear-gradient(145deg, #3e2723 0%, #6b473e 100%)" },
-  { id: 7, tone: "linear-gradient(145deg, #2b170f 0%, #5f3e35 100%)" },
-  { id: 8, tone: "linear-gradient(145deg, #35211b 0%, #6e4a40 100%)" },
-  { id: 9, tone: "linear-gradient(145deg, #2c1810 0%, #573831 100%)" },
-  { id: 10, tone: "linear-gradient(145deg, #3e2723 0%, #5f3e35 100%)" },
-  { id: 11, tone: "linear-gradient(145deg, #2b160f 0%, #4a312b 100%)" },
-  { id: 12, tone: "linear-gradient(145deg, #35211b 0%, #6b473e 100%)" },
+  { id: 1, imageUrl: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=900&q=80" },
+  { id: 2, imageUrl: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=80" },
+  { id: 3, imageUrl: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=900&q=80" },
+  { id: 4, imageUrl: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80" },
+  { id: 5, imageUrl: "https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=900&q=80" },
+  { id: 6, imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" },
+  { id: 7, imageUrl: "https://images.unsplash.com/photo-1514517220017-8ce97a34a7b6?auto=format&fit=crop&w=900&q=80" },
+  { id: 8, imageUrl: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=900&q=80" },
+  { id: 9, imageUrl: "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80" },
+  { id: 10, imageUrl: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80" },
+  { id: 11, imageUrl: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=900&q=80" },
+  { id: 12, imageUrl: "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=900&q=80" },
 ];
 
 const InstaIcon = () => (
@@ -26,53 +24,21 @@ const InstaIcon = () => (
 );
 
 export default function InstagramFeed() {
-  const [images, setImages] = useState([]);
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const results = await fetchImagesByTag("instagram", 12);
-        setImages(results);
-      } catch (error) {
-        console.error("Failed to load instagram images", error);
-      }
-    };
-
-    load();
-  }, []);
-
-  const posts = useMemo(
-    () =>
-      POSTS.map((post, index) => {
-        const imageUrl = getCycledImageUrl(images, index);
-        return {
-          ...post,
-          imageUrl,
-          href: imageUrl || "#",
-        };
-      }),
-    [images]
-  );
-
   return (
     <section className="ig-section">
       <h2 className="ig-heading">Catch us on instagram</h2>
 
       <div className="ig-grid">
-        {posts.map((post) => (
+        {POSTS.map((post) => (
           <a
             key={post.id}
-            href={post.href}
+            href={post.imageUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="ig-cell"
             aria-label="View on Instagram"
           >
-            {post.imageUrl ? (
-              <img src={post.imageUrl} alt={`Instagram post ${post.id}`} className="ig-placeholder ig-placeholder--image" loading="lazy" />
-            ) : (
-              <div className="ig-placeholder" style={{ background: post.tone }} aria-hidden="true" />
-            )}
+            <img src={post.imageUrl} alt={`Chocolate review post ${post.id}`} className="ig-placeholder ig-placeholder--image" loading="lazy" />
             <div className="ig-overlay">
               <InstaIcon />
             </div>

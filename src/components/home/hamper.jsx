@@ -26,7 +26,7 @@ function Hamper() {
       style={
         imageUrl
           ? {
-              backgroundImage: `linear-gradient(120deg, rgba(18, 10, 6, 0.7), rgba(18, 10, 6, 0.25)), url(${imageUrl})`,
+              backgroundImage: `linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)), url(${imageUrl})`,
             }
           : undefined
       }

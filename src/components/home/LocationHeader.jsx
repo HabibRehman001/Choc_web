@@ -34,6 +34,7 @@ const NAV_ITEMS = [
     label: "CHOCOLATES",
     dropdown: {
       title: "Chocolates",
+      imageTag: "nav-chocolates",
       subcategories: ["Chocolate bars", "Chocolate barks", "Chocolate gift boxes", "Diabetic Friendly", "Dark", "Milk", "White", "Nutty"],
       images: [
         { label: "Chocolate bars", tone: "linear-gradient(145deg, #2c1810 0%, #4a312b 100%)" },
@@ -45,6 +46,7 @@ const NAV_ITEMS = [
     label: "GIFTING",
     dropdown: {
       title: "Gifting",
+      imageTag: "nav-gifting",
       subcategories: ["Gift boxes", "Hampers", "Custom gifting", "Corporate gifts", "Gift wrapping", "Seasonal specials"],
       images: [
         { label: "Gift boxes", tone: "linear-gradient(145deg, #35211b 0%, #6b473e 100%)" },
@@ -56,6 +58,7 @@ const NAV_ITEMS = [
     label: "OCCASIONS",
     dropdown: {
       title: "Occasions",
+      imageTag: "nav-occasions",
       subcategories: ["Wedding", "New baby", "New home", "Birthday", "Just love", "Thank you", "Business gifts", "Congrats"],
       images: [
         { label: "Business gifts", tone: "linear-gradient(145deg, #2c1810 0%, #5a3a33 100%)" },
@@ -67,6 +70,7 @@ const NAV_ITEMS = [
     label: "CAKES",
     dropdown: {
       title: "Cakes",
+      imageTag: "nav-cakes",
       subcategories: ["Celebration cakes", "Mousse cakes", "Mini cakes", "Custom cakes", "Cheesecakes", "Tart cakes"],
       images: [
         { label: "Celebration cakes", tone: "linear-gradient(145deg, #2b160f 0%, #4a312b 100%)" },
@@ -78,6 +82,7 @@ const NAV_ITEMS = [
     label: "MUNCHABLES",
     dropdown: {
       title: "Munchables",
+      imageTag: "nav-munchables",
       subcategories: ["Truffles", "Bonbons", "Chocolate clusters", "Pralines", "Fudge", "Brittle"],
       images: [
         { label: "Truffles", tone: "linear-gradient(145deg, #2c1810 0%, #573831 100%)" },
@@ -89,6 +94,7 @@ const NAV_ITEMS = [
     label: "ACCESSORIES",
     dropdown: {
       title: "Accessories",
+      imageTag: "nav-accessories",
       subcategories: ["Packaging", "Ribbons & bows", "Gift cards", "Boxes", "Bags", "Tissue paper"],
       images: [
         { label: "Packaging", tone: "linear-gradient(145deg, #2b170f 0%, #4f342d 100%)" },
@@ -167,7 +173,7 @@ export default function LocationHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
-  const [navImages, setNavImages] = useState([]);
+  const [navImagesByTag, setNavImagesByTag] = useState({});
   const megaBarRef = useRef(null);
   const [megaPanelTop, setMegaPanelTop] = useState(0);
 
@@ -203,11 +209,19 @@ export default function LocationHeader() {
 
   useEffect(() => {
     const loadNavImages = async () => {
+      const dropdownTags = NAV_ITEMS.filter((item) => item.dropdown?.imageTag).map((item) => item.dropdown.imageTag);
+
       try {
-        const images = await fetchImagesByTag("nav", 12);
-        setNavImages(images);
+        const results = await Promise.all(
+          dropdownTags.map(async (tag) => {
+            const images = await fetchImagesByTag(tag, 2);
+            return [tag, images];
+          })
+        );
+
+        setNavImagesByTag(Object.fromEntries(results));
       } catch (error) {
-        console.error("Failed to load nav images", error);
+        console.error("Failed to load nav dropdown images", error);
       }
     };
 
@@ -235,10 +249,10 @@ export default function LocationHeader() {
     <div className="w-full min-w-0 text-[#f5e6ca]">
       <div className="sticky top-0 z-[220]">
         <header className="w-full bg-[#1f120d] border-b border-[#d4af374d] relative z-[200]">
-          <div className="w-full px-3 sm:px-4 md:px-10 py-2.5 md:py-4 grid grid-cols-[auto_1fr_auto] items-center">
+          <div className="w-full px-3 sm:px-4 md:px-10 py-2.5 md:py-4 grid grid-cols-[auto_1fr_auto] items-center gap-2 md:gap-0">
             <div className="flex items-center gap-2 relative">
               <button
-                className="md:hidden text-[#f5e6ca] hover:text-[#d4af37] transition-colors"
+                className="md:hidden h-9 w-9 rounded-full border border-[#d4af3759] bg-[#2c1810] text-[#f5e6ca] hover:text-[#d4af37] hover:border-[#d4af37] transition-colors flex items-center justify-center"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open menu"
               >
@@ -266,23 +280,23 @@ export default function LocationHeader() {
             </div>
 
             <div className="flex items-center justify-center h-full max-h-full overflow-hidden md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2">
-              <div className="rounded-full border border-[#d4af3773] bg-[#2c1810] px-4 py-1.5 md:px-5 md:py-2 shadow-[0_10px_24px_rgba(12,6,4,0.35)]">
+              <div className="rounded-full border border-[#d4af3773] bg-[#2c1810] px-3 py-1.5 sm:px-4 md:px-5 md:py-2 shadow-[0_10px_24px_rgba(12,6,4,0.35)]">
                 <p className="m-0 text-[0.68rem] md:text-[0.82rem] tracking-[0.26em] uppercase text-[#d4af37]">Olmec</p>
-                <p className="m-0 text-[0.55rem] md:text-[0.65rem] tracking-[0.12em] uppercase text-[#f5e6ca]">Chocolate Atelier</p>
+                <p className="m-0 text-[0.52rem] sm:text-[0.55rem] md:text-[0.65rem] tracking-[0.12em] uppercase text-[#f5e6ca]">Chocolate Atelier</p>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5 md:gap-4 justify-self-end">
               <button
                 onClick={openModal}
-                className="flex items-center gap-1.5 bg-[#2c1810] border border-[#d4af3766] rounded-xl px-2 md:px-3.5 py-1 md:py-2 cursor-pointer hover:bg-[#3e2723] hover:border-[#d4af37] transition-all text-left max-w-[138px] sm:max-w-none"
+                className="flex items-center gap-1.5 bg-[#2c1810] border border-[#d4af3766] rounded-full px-2.5 sm:px-3 md:px-3.5 py-1.5 md:py-2 cursor-pointer hover:bg-[#3e2723] hover:border-[#d4af37] transition-all text-left max-w-[122px] sm:max-w-[138px] md:max-w-none shadow-[0_6px_16px_rgba(12,6,4,0.28)]"
               >
                 <span className="text-[#d4af37]">
                   <PinIcon />
                 </span>
                 <span className="flex flex-col leading-tight min-w-0">
                   <span className="text-[0.6rem] text-[#f5e6ca99] uppercase tracking-widest hidden md:block">Change Location</span>
-                  <span className="text-[0.72rem] md:text-sm font-bold text-[#f5e6ca] truncate">{selectedCity}</span>
+                  <span className="text-[0.68rem] sm:text-[0.72rem] md:text-sm font-bold text-[#f5e6ca] truncate">{selectedCity}</span>
                 </span>
               </button>
 
@@ -297,7 +311,7 @@ export default function LocationHeader() {
                 <button className="relative p-1.5 text-[#f5e6ca] hover:text-[#d4af37] transition-colors hidden md:flex">
                   <UserIcon />
                 </button>
-                <button className="relative p-1.5 text-[#f5e6ca] hover:text-[#d4af37] transition-colors">
+                <button className="relative h-9 w-9 rounded-full border border-[#d4af3759] bg-[#2c1810] p-0 text-[#f5e6ca] hover:text-[#d4af37] hover:border-[#d4af37] transition-colors flex items-center justify-center">
                   <CartIcon />
                   <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-[#d4af37] text-[#1a0f0b] text-[0.5rem] font-bold flex items-center justify-center">0</span>
                 </button>
@@ -354,7 +368,7 @@ export default function LocationHeader() {
 
                       <div className="flex gap-5 flex-1 justify-end">
                         {item.dropdown.images.map((img, imageIndex) => {
-                          const imageUrl = getCycledImageUrl(navImages, imageIndex);
+                          const imageUrl = getCycledImageUrl(navImagesByTag[item.dropdown.imageTag], imageIndex);
 
                           return (
                             <div key={img.label} className="relative w-64 rounded-xl overflow-hidden cursor-pointer group flex-shrink-0 border border-[#d4af3740]">
@@ -494,7 +508,7 @@ export default function LocationHeader() {
 
                   <div className="flex gap-3 p-4">
                     {item.dropdown.images.map((img, imageIndex) => {
-                      const imageUrl = getCycledImageUrl(navImages, imageIndex);
+                      const imageUrl = getCycledImageUrl(navImagesByTag[item.dropdown.imageTag], imageIndex);
 
                       return (
                         <div key={img.label} className="relative flex-1 rounded-lg overflow-hidden border border-[#d4af3740]">

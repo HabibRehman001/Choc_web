@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../../Styles/footer.css";
 
 const InstagramIcon = () => (
@@ -15,6 +16,12 @@ const FacebookIcon = () => (
 );
 
 export default function Footer() {
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (sectionKey) => {
+    setOpenSection((prev) => (prev === sectionKey ? null : sectionKey));
+  };
+
   return (
     <footer className="ft-footer">
       {/* ── Main content ── */}
@@ -22,38 +29,68 @@ export default function Footer() {
 
         {/* Col 1 — Contact */}
         <div className="ft-col">
-          <h3 className="ft-col-heading">Contact Us</h3>
-          <ul className="ft-contact-list">
-            <li><span className="ft-label">UAN:</span> (021)111-165-632</li>
-            <li><span className="ft-label">Whatsapp:</span> +92 301 1165632</li>
-            <li><span className="ft-label">Email:</span> <a href="mailto:customercare@olmec.pk">customercare@olmec.pk</a></li>
-            <li><span className="ft-label">Corporate Gifts:</span> +92 336 8565146</li>
-            <li><a href="mailto:corporate.sales@olmec.pk">corporate.sales@olmec.pk</a></li>
-          </ul>
+          <button
+            type="button"
+            className="ft-col-heading ft-accordion-toggle"
+            onClick={() => toggleSection("contact")}
+            aria-expanded={openSection === "contact"}
+          >
+            <span>Contact Us</span>
+            <span className={`ft-accordion-icon ${openSection === "contact" ? "is-open" : ""}`}>+</span>
+          </button>
+          <div className={`ft-accordion-body ${openSection === "contact" ? "is-open" : ""}`}>
+            <ul className="ft-contact-list">
+              <li><span className="ft-label">UAN:</span> (021)111-165-632</li>
+              <li><span className="ft-label">Whatsapp:</span> +92 301 1165632</li>
+              <li><span className="ft-label">Email:</span> <a href="mailto:customercare@olmec.pk">customercare@olmec.pk</a></li>
+              <li><span className="ft-label">Corporate Gifts:</span> +92 336 8565146</li>
+              <li><a href="mailto:corporate.sales@olmec.pk">corporate.sales@olmec.pk</a></li>
+            </ul>
+          </div>
         </div>
 
         {/* Col 2 — Links */}
         <div className="ft-col">
-          <h3 className="ft-col-heading">Links</h3>
-          <ul className="ft-link-list">
-            <li><a href="#">Shop chocolate</a></li>
-            <li><a href="#">Corporate gifting</a></li>
-            <li><a href="#">Make your own hamper</a></li>
-            <li><a href="#">Track your order</a></li>
-          </ul>
+          <button
+            type="button"
+            className="ft-col-heading ft-accordion-toggle"
+            onClick={() => toggleSection("links")}
+            aria-expanded={openSection === "links"}
+          >
+            <span>Links</span>
+            <span className={`ft-accordion-icon ${openSection === "links" ? "is-open" : ""}`}>+</span>
+          </button>
+          <div className={`ft-accordion-body ${openSection === "links" ? "is-open" : ""}`}>
+            <ul className="ft-link-list">
+              <li><a href="#">Shop chocolate</a></li>
+              <li><a href="#">Corporate gifting</a></li>
+              <li><a href="#">Make your own hamper</a></li>
+              <li><a href="#">Track your order</a></li>
+            </ul>
+          </div>
         </div>
 
         {/* Col 3 — Information */}
         <div className="ft-col">
-          <h3 className="ft-col-heading">Information</h3>
-          <ul className="ft-link-list">
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Privacy policy</a></li>
-            <li><a href="#">Terms &amp; conditions</a></li>
-            <li><a href="#">Shipping and return policy</a></li>
-          </ul>
+          <button
+            type="button"
+            className="ft-col-heading ft-accordion-toggle"
+            onClick={() => toggleSection("information")}
+            aria-expanded={openSection === "information"}
+          >
+            <span>Information</span>
+            <span className={`ft-accordion-icon ${openSection === "information" ? "is-open" : ""}`}>+</span>
+          </button>
+          <div className={`ft-accordion-body ${openSection === "information" ? "is-open" : ""}`}>
+            <ul className="ft-link-list">
+              <li><a href="#">Menu</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Terms &amp; conditions</a></li>
+              <li><a href="#">Shipping and return policy</a></li>
+            </ul>
+          </div>
         </div>
 
         {/* Col 4 — Keep in touch */}
