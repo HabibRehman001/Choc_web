@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const Image = require('../models/images.model');
 
+const getBaseUrl = (req) => {
+  const configured = process.env.PUBLIC_API_URL?.replace(/\/$/, '');
+  if (configured) return configured;
+  return `${req.protocol}://${req.get('host')}`;
+};
+
 const toImageResponse = (doc, req) => {
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  const baseUrl = getBaseUrl(req);
 
   return {
     id: doc._id,
