@@ -1,5 +1,5 @@
 // Empty base URL in dev uses Vite's /api proxy (same port as the frontend).
-// In production (Vercel), set VITE_API_BASE_URL to your deployed backend URL before building.
+// In production (Vercel), set VITE_API_BASE_URL to your Render backend URL before building.
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
 
 export const getApiBaseUrl = () => API_BASE_URL;
@@ -24,7 +24,7 @@ export const fetchImagesByTag = async (tag, limit = 20) => {
 
   if (import.meta.env.PROD && !API_BASE_URL) {
     console.error(
-      "VITE_API_BASE_URL is not set. Add it in Vercel → Settings → Environment Variables, then redeploy."
+      "VITE_API_BASE_URL is not set. Add your Render backend URL in Vercel → Settings → Environment Variables, then redeploy."
     );
     return [];
   }

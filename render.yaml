@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: choc-web-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_DB_URL
+        sync: false
+      - key: PUBLIC_API_URL
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
