@@ -4,11 +4,12 @@ const imageRoutes = require('./routes/images.routes');
 
 const app = express();
 
-app.use(
-  cors({
-    origin: process.env.CLIENT_ORIGIN || '*',
-  })
-);
+const clientOrigin = process.env.CLIENT_ORIGIN?.trim();
+const corsOrigin = clientOrigin
+  ? clientOrigin.split(',').map((origin) => origin.trim()).filter(Boolean)
+  : '*';
+
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
